@@ -100,10 +100,10 @@ class GenerateLegacyTests:
       kfdef_spec = yaml.load(fh)
 
     # Map each application to its relative path.
-    apps = {}
-    for a in kfdef_spec["spec"]["applications"]:
-      apps[a["name"]] = a["kustomizeConfig"]["repoRef"]["path"]
-
+    apps = {
+        a["name"]: a["kustomizeConfig"]["repoRef"]["path"]
+        for a in kfdef_spec["spec"]["applications"]
+    }
     kfapp_dir = os.path.dirname(kfdef)
     kustomize_dir = os.path.join(kfapp_dir, "kustomize")
     for d in os.listdir(kustomize_dir):
@@ -112,7 +112,7 @@ class GenerateLegacyTests:
         continue
       kustomize_file = os.path.join(kustomize_dir, d, "kustomization.yaml")
 
-      if not d in apps:
+      if d not in apps:
         logging.info(f"Skipping {d}; not an application")
 
       if not os.path.exists(kustomize_file):

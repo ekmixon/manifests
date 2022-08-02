@@ -43,11 +43,7 @@ class KFDefBuilder:
           # whereas version files are named kfctl_?.version.yaml
           # in subsequent PRs we might change that
 
-          if version == "master":
-            ext = ".yaml"
-          else:
-            ext = "." + version + ".yaml"
-
+          ext = ".yaml" if version == "master" else f".{version}.yaml"
           basename, _ = os.path.splitext(new_name)
           new_name = basename + ext
 

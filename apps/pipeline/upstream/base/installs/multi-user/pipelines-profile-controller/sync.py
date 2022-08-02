@@ -44,10 +44,10 @@ def get_settings_from_env(controller_port=None,
         minio_access_key: Required (no default)
         minio_secret_key: Required (no default)
     """
-    settings = dict()
-    settings["controller_port"] = \
-        controller_port or \
-        os.environ.get("CONTROLLER_PORT", "8080")
+    settings = {
+        "controller_port": controller_port
+        or os.environ.get("CONTROLLER_PORT", "8080")
+    }
 
     settings["visualization_server_image"] = \
         visualization_server_image or \

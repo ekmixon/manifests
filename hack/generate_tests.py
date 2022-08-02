@@ -37,9 +37,7 @@ def generate_test_path(repo_root, kustomize_rpath):
       kustomize package to generate the test for.
   """
 
-  test_path = os.path.join(repo_root, "tests", kustomize_rpath,
-                           TEST_NAME)
-  return test_path
+  return os.path.join(repo_root, "tests", kustomize_rpath, TEST_NAME)
 
 def run_kustomize_build(repo_root, package_dir):
   """Run kustomize build and store the output in the test directory."""

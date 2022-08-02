@@ -272,8 +272,8 @@ class KptCreator:
 
     # Names for WI identity bindings
     for suffix in ["ml-pipeline-ui", "ml-pipeline-visualizationserver", "pipeline-runner"]:
-      name = "user-wi-" + suffix
-      value = "name-user-workload-identity-user-" + suffix
+      name = f"user-wi-{suffix}"
+      value = f"name-user-workload-identity-user-{suffix}"
       pattern = "${name}" + "-user-workload-identity-user-" + suffix
 
       create_subst(name, value, pattern, path)
@@ -334,7 +334,7 @@ class KptCreator:
                 "admin-monitoringviewer",]
 
     for a in policies:
-      create_subst(a + "-iam", f"name-{a}", r"""${name}-""" + a, path)
+      create_subst(f"{a}-iam", f"name-{a}", r"""${name}-""" + a, path)
 
     create_subst("name-vm", "name-vm", "${name}-vm", path)
 
